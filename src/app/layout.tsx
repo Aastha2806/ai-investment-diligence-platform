@@ -1,0 +1,42 @@
+import type { Metadata } from "next";
+import { Inter, Source_Serif_4, IBM_Plex_Mono } from "next/font/google";
+import "./globals.css";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif",
+  subsets: ["latin"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
+export const metadata: Metadata = {
+  title: "AI Investment Diligence & Valuation Platform",
+  description:
+    "A zero-cost, deterministic investment diligence and DCF valuation platform demonstrating financial modelling, forensic accounting analysis, and structured diligence workflows.",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html
+      lang="en"
+      className={`${inter.variable} ${sourceSerif.variable} ${plexMono.variable} h-full antialiased`}
+    >
+      <body className="flex min-h-full flex-col bg-background text-foreground">
+        <Nav />
+        <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}

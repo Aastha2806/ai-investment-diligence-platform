@@ -1,0 +1,40 @@
+{
+  "name": "Meridian Analytics, Inc.",
+  "ticker": "MRDN",
+  "isIllustrative": true,
+  "dataDisclaimer": "Meridian Analytics, Inc. is a fictional company created for this portfolio project. All financial figures are illustrative demo data constructed to be internally consistent, not real disclosed filings. See DATA_SOURCES.md for the full methodology and construction notes.",
+  "sector": "Enterprise Software / Vertical SaaS",
+  "industry": "Data & Analytics Platforms",
+  "founded": 2011,
+  "headquarters": "Austin, Texas, USA",
+  "fiscalYearEnd": "December 31",
+  "currency": "USD",
+  "unit": "USD millions unless noted per-share",
+  "overview": "Meridian Analytics develops a subscription analytics and workflow platform used by mid-market and enterprise operations, finance, and supply-chain teams to consolidate reporting and forecasting. Revenue is substantially subscription-based (ARR), supplemented by implementation and professional services.",
+  "businessModel": "SaaS subscriptions sold on annual contracts, priced per-seat and per-data-connector, with a smaller professional-services and implementation revenue stream. Net revenue retention and gross margin expansion are the primary levers management has emphasized.",
+  "geography": [
+    { "region": "North America", "revenueShare": 0.61 },
+    { "region": "Europe", "revenueShare": 0.24 },
+    { "region": "Asia-Pacific", "revenueShare": 0.11 },
+    { "region": "Rest of World", "revenueShare": 0.04 }
+  ],
+  "segments": [
+    { "name": "Subscription (Platform)", "description": "Core recurring SaaS subscription revenue.", "revenueShare": 0.86 },
+    { "name": "Professional Services & Implementation", "description": "Onboarding, integration, and custom-connector services.", "revenueShare": 0.14 }
+  ],
+  "operatingMetrics": [
+    { "label": "Net Revenue Retention (illustrative)", "value": "112%" },
+    { "label": "Gross Revenue Retention (illustrative)", "value": "94%" },
+    { "label": "Rule-of-40 (Revenue Growth + EBITDA Margin, FY2025)", "value": "40.8%" },
+    { "label": "Employees (approx.)", "value": "1,450" }
+  ],
+  "capitalStructure": {
+    "notes": "Capital structure is illustrative: a single senior term loan amortizing over the model period, no preferred equity, no convertible instruments, and a flat fully-diluted share count assumed across the historical window for simplicity.",
+    "shareClass": "Single class of common equity (illustrative)",
+    "sharesOutstandingMillions": 42.0
+  },
+  "notes": [
+    "This company and all figures below are fictional / illustrative, constructed for a zero-cost educational portfolio project. Do not treat any number on this site as real market or company data.",
+    "Where the platform demonstrates a technique that would normally use real filings (e.g. 10-K/10-Q data), the same computation applies identically to real data — only the input JSON files would need to change."
+  ]
+}

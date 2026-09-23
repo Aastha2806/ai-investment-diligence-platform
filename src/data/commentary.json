@@ -1,0 +1,30 @@
+{
+  "isIllustrative": true,
+  "note": "Sample management commentary, written to sound like typical earnings-call / shareholder-letter language. Authored for this illustrative company, not quoted from any real filing.",
+  "entries": [
+    {
+      "year": 2022,
+      "source": "Illustrative FY2022 Shareholder Letter",
+      "quote": "We drove meaningful margin expansion this year while sustaining strong top-line growth, and our cash conversion remained healthy.",
+      "claims": ["margin_expansion", "strong_growth", "healthy_cash_conversion"]
+    },
+    {
+      "year": 2023,
+      "source": "Illustrative FY2023 Shareholder Letter",
+      "quote": "EBITDA margin expanded again in FY2023 as the business continued to scale efficiently, and free cash flow generation remains a core strength of the model.",
+      "claims": ["margin_expansion", "strong_fcf"]
+    },
+    {
+      "year": 2024,
+      "source": "Illustrative FY2024 Shareholder Letter",
+      "quote": "Revenue growth accelerated and margins expanded further, reflecting durable operating leverage across the platform.",
+      "claims": ["growth_acceleration", "margin_expansion"]
+    },
+    {
+      "year": 2025,
+      "source": "Illustrative FY2025 Shareholder Letter",
+      "quote": "We delivered another year of double-digit growth and margin expansion, with cash conversion consistent with prior years and no notable change in working-capital dynamics.",
+      "claims": ["strong_growth", "margin_expansion", "healthy_cash_conversion", "stable_working_capital"]
+    }
+  ]
+}

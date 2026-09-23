@@ -1,0 +1,103 @@
+import type { ReactNode } from "react";
+
+export function PageHeader({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div className="mb-8 border-b border-border pb-6">
+      <p className="text-xs font-semibold uppercase tracking-wider text-accent">{eyebrow}</p>
+      <h1 className="mt-1 font-serif-heading text-3xl font-semibold text-foreground">{title}</h1>
+      {description && <p className="mt-2 max-w-3xl text-sm text-foreground-muted">{description}</p>}
+    </div>
+  );
+}
+
+export function Section({
+  title,
+  description,
+  children,
+  className = "",
+}: {
+  title?: string;
+  description?: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <section className={`mb-10 ${className}`}>
+      {title && <h2 className="font-serif-heading text-xl font-semibold text-foreground">{title}</h2>}
+      {description && <p className="mt-1 max-w-3xl text-sm text-foreground-muted">{description}</p>}
+      <div className={title ? "mt-4" : ""}>{children}</div>
+    </section>
+  );
+}
+
+export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={`rounded-lg border border-border bg-surface p-5 shadow-sm ${className}`}>{children}</div>
+  );
+}
+
+export function StatCard({
+  label,
+  value,
+  sublabel,
+  tone = "neutral",
+}: {
+  label: string;
+  value: string;
+  sublabel?: string;
+  tone?: "neutral" | "positive" | "negative" | "watch";
+}) {
+  const toneClass =
+    tone === "positive"
+      ? "text-positive"
+      : tone === "negative"
+        ? "text-negative"
+        : tone === "watch"
+          ? "text-watch"
+          : "text-foreground";
+  return (
+    <Card>
+      <p className="text-xs font-medium uppercase tracking-wide text-foreground-muted">{label}</p>
+      <p className={`mt-2 font-tabular text-2xl font-semibold ${toneClass}`}>{value}</p>
+      {sublabel && <p className="mt-1 text-xs text-foreground-muted">{sublabel}</p>}
+    </Card>
+  );
+}
+
+export function IllustrativeBanner() {
+  return (
+    <div className="mb-6 rounded-md border border-watch/40 bg-[#fdf6e8] px-4 py-3 text-sm text-[#6b4c00]">
+      <strong>Illustrative demo data.</strong> Meridian Analytics, Inc. is a fictional company built
+      for this portfolio project. All figures are constructed, internally-consistent demo data, not
+      real filings. See the{" "}
+      <a href="/methodology" className="underline">
+        Methodology
+      </a>{" "}
+      page and DATA_SOURCES.md in the repository for the full construction notes.
+    </div>
+  );
+}
+
+export function Pill({ children, tone = "neutral" }: { children: ReactNode; tone?: "neutral" | "positive" | "negative" | "watch" | "elevated" }) {
+  const toneClass =
+    tone === "positive"
+      ? "bg-[#e7f5ee] text-positive border-positive/30"
+      : tone === "negative" || tone === "elevated"
+        ? "bg-[#fbeceb] text-negative border-negative/30"
+        : tone === "watch"
+          ? "bg-[#fdf6e8] text-watch border-watch/30"
+          : "bg-surface-muted text-foreground-muted border-border";
+  return (
+    <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${toneClass}`}>
+      {children}
+    </span>
+  );
+}
