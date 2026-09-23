@@ -29,7 +29,7 @@ export default function Nav() {
             </span>
           </Link>
           <span className="rounded-full border border-border bg-surface-muted px-3 py-1 text-xs font-medium text-foreground-muted">
-            Illustrative Demo Data · Zero-Cost Prototype
+            Illustrative Demo Data
           </span>
         </div>
         <nav className="-mb-px flex flex-wrap gap-x-1 gap-y-1 overflow-x-auto text-sm">

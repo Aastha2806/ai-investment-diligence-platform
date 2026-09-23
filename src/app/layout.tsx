@@ -23,7 +23,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "AI Investment Diligence & Valuation Platform",
   description:
-    "A zero-cost, deterministic investment diligence and DCF valuation platform demonstrating financial modelling, forensic accounting analysis, and structured diligence workflows.",
+    "Company-level investment diligence and valuation: financial analysis, forensic accounting, DCF valuation, scenario analysis, diligence, and an investment memo, in one workflow.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

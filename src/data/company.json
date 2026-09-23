@@ -32,9 +32,5 @@
     "notes": "Capital structure is illustrative: a single senior term loan amortizing over the model period, no preferred equity, no convertible instruments, and a flat fully-diluted share count assumed across the historical window for simplicity.",
     "shareClass": "Single class of common equity (illustrative)",
     "sharesOutstandingMillions": 42.0
-  },
-  "notes": [
-    "This company and all figures below are fictional / illustrative, constructed for a zero-cost educational portfolio project. Do not treat any number on this site as real market or company data.",
-    "Where the platform demonstrates a technique that would normally use real filings (e.g. 10-K/10-Q data), the same computation applies identically to real data — only the input JSON files would need to change."
-  ]
+  }
 }
