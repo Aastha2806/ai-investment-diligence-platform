@@ -112,7 +112,7 @@ Each sample commentary quote (`src/data/commentary.json`) is tagged with structu
 
 ## AI Limitations
 
-To be explicit: the diligence engine and the natural-language parser are the only two features that use the phrase "AI-assisted," and both are fixed, auditable rule sets, not learned or generative models. That means:
+To be explicit: the diligence engine and the natural-language parser are the only two features that use the phrase "deterministic," and both are fixed, auditable rule sets, not learned or generative models. That means:
 
 - They cannot handle inputs outside their coded patterns — the parser reports "unable to parse" rather than guessing, and the diligence engine will simply not fire a rule it wasn't written for (it does not infer novel risks).
 - Rule thresholds (e.g. "growth deceleration > 1pp") are illustrative judgment calls, not calibrated against a large historical dataset.
