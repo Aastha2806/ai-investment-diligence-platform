@@ -5,6 +5,32 @@ An interactive, zero-cost investment diligence and DCF valuation web app — fin
 **Live Demo:** [aastha2806.github.io/ai-investment-diligence-platform](https://aastha2806.github.io/ai-investment-diligence-platform/)
 **Repository:** [github.com/Aastha2806/ai-investment-diligence-platform](https://github.com/Aastha2806/ai-investment-diligence-platform)
 
+### Demo
+
+A real walkthrough of the live site — Dashboard → Financials → Forensic → DCF → Diligence → Memo (captured from the actual deployed app, not a mockup):
+
+![Demo walkthrough](public/screenshots/demo.gif)
+
+### Screenshots
+
+**Dashboard**
+![Dashboard](public/screenshots/dashboard.png)
+
+**Interactive FCFF DCF**
+![DCF](public/screenshots/dcf.png)
+
+**Forensic & Accounting Analysis**
+![Forensic Analysis](public/screenshots/forensic.png)
+
+**AI-Assisted Diligence Engine**
+![Diligence Engine](public/screenshots/diligence.png)
+
+**Investment Memo**
+![Investment Memo](public/screenshots/memo.png)
+
+**Methodology**
+![Methodology](public/screenshots/methodology.png)
+
 ## What This Project Does
 
 It walks a single illustrative company through a full diligence-and-valuation workflow — **Company → Financials → Historical Analysis → Forensic Analysis → DCF Valuation → Scenario Analysis → Diligence → Investment Memo** — with every margin, ratio, CAGR, DCF output, and forensic score computed live from raw line items, not hard-coded. It produces valuation ranges, scenario outputs, and diligence questions — **never a buy, sell, hold, or price-target recommendation.**
@@ -114,30 +140,6 @@ src/
   data/            company.json, financials.json, commentary.json
 .github/workflows/deploy.yml   CI: test → lint → build → deploy to GitHub Pages
 ```
-
-## Screenshots
-
-Captured directly from the live deployed site.
-
-**Dashboard**
-![Dashboard](public/screenshots/dashboard.png)
-
-**Interactive FCFF DCF**
-![DCF](public/screenshots/dcf.png)
-
-**Forensic & Accounting Analysis**
-![Forensic Analysis](public/screenshots/forensic.png)
-
-**AI-Assisted Diligence Engine**
-![Diligence Engine](public/screenshots/diligence.png)
-
-**Investment Memo**
-![Investment Memo](public/screenshots/memo.png)
-
-**Methodology**
-![Methodology](public/screenshots/methodology.png)
-
-See [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for a full walkthrough script.
 
 ## Interview / Demo Walkthrough
 
