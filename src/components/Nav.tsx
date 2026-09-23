@@ -25,7 +25,7 @@ export default function Nav() {
         <div className="flex flex-wrap items-center justify-between gap-2">
           <Link href="/" className="flex items-baseline gap-2">
             <span className="font-serif-heading text-lg font-semibold tracking-tight text-accent-strong">
-              AI Investment Diligence &amp; Valuation Platform
+              Investment Diligence &amp; Valuation
             </span>
           </Link>
           <span className="rounded-full border border-border bg-surface-muted px-3 py-1 text-xs font-medium text-foreground-muted">

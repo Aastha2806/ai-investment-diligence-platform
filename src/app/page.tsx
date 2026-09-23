@@ -28,7 +28,7 @@ export default function DashboardPage() {
       <PageHeader
         eyebrow="Dashboard"
         title="Investment Diligence & Valuation"
-        description="Financial analysis, forensic screens, DCF valuation and diligence — in one workflow."
+        description="A working finance workflow connecting financial analysis, forensic screening, valuation, scenario analysis and investment diligence."
       />
       <IllustrativeBanner />
 

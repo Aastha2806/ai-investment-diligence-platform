@@ -1,6 +1,6 @@
-# AI Investment Diligence & Valuation Platform
+# Investment Diligence & Valuation
 
-An interactive, zero-cost investment diligence and DCF valuation web app — financial statement analysis, forensic accounting screens, a live FCFF DCF, scenario analysis, a rule-based diligence engine, and an investment memo, all computed deterministically in the browser.
+A working finance workflow connecting financial analysis, forensic screening, valuation, scenario analysis and investment diligence — financial statement analysis, forensic accounting screens, a live FCFF DCF, scenario analysis, a rule-based diligence engine, and an investment memo, computed deterministically in the browser.
 
 **Live Demo:** [aastha2806.github.io/ai-investment-diligence-platform](https://aastha2806.github.io/ai-investment-diligence-platform/)
 **Repository:** [github.com/Aastha2806/ai-investment-diligence-platform](https://github.com/Aastha2806/ai-investment-diligence-platform)
