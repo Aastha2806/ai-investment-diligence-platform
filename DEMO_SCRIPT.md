@@ -36,7 +36,7 @@ Click between Downside / Base / Upside. Show the comparison table.
 
 Scroll the findings. Point at the FY2025 cash-conversion finding and the linked commentary finding.
 
-> "This is the 'AI-assisted' diligence engine — and I'm upfront that it's deterministic rule logic, not a language model, because I built this with a zero-cost constraint. Each finding cites the exact metric that triggered it and suggests a follow-up diligence question."
+> "This is the 'deterministic' diligence engine — and I'm upfront that it's deterministic rule logic, not a language model, because I built this with a static portfolio constraint. Each finding cites the exact metric that triggered it and suggests a follow-up diligence question."
 
 ## 7. Memo (30s)
 
@@ -58,4 +58,4 @@ chrome --headless=new --window-size=1440,1000 --screenshot=public/screenshots/da
 
 ## Video Recording
 
-Not included. This environment had no screen-recording or video-capture tooling available (no ffmpeg, no headless-browser video export) without adding a new dependency, so a recorded walkthrough was not produced. The static screenshots above and this script substitute for one.
+The repository includes a real browser-recorded walkthrough at `public/screenshots/demo.webm`. It was captured with Playwright against the deployed app and includes navigation through the workflow plus the interactive DCF WACC adjustment.
