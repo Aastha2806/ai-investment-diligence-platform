@@ -28,7 +28,7 @@ If your viewer doesn't render the video above, here's the same walkthrough as a 
 **Forensic & Accounting Analysis**
 ![Forensic Analysis](public/screenshots/forensic.png)
 
-**AI-Assisted Diligence Engine**
+**Diligence Engine**
 ![Diligence Engine](public/screenshots/diligence.png)
 
 **Investment Memo**
@@ -43,7 +43,7 @@ It walks a single illustrative company through a full diligence-and-valuation wo
 
 ## Why It Was Built
 
-As a portfolio project bridging finance and software engineering, for Investment Banking, Private Equity / Private Markets, Venture Capital, Hedge Fund / Buy-Side, and Equity Research applications — built with a hard zero-cost constraint (no paid APIs, no paid hosting, no database) so it can be shared and scaled to any amount of traffic without ever costing anything.
+As a portfolio project bridging finance and software engineering, for Investment Banking, Private Equity / Private Markets, Venture Capital, Hedge Fund / Buy-Side, and Equity Research applications — built as a static portfolio demo with no backend or database.
 
 ## Key Finance Capabilities
 
@@ -57,7 +57,7 @@ As a portfolio project bridging finance and software engineering, for Investment
 
 ## Key Technical Capabilities
 
-- A pure, framework-free TypeScript calculation engine (`src/lib/`) — 65 automated unit tests, zero React/Next.js imports, fully independent of the UI.
+- A pure, framework-free TypeScript calculation engine (`src/lib/`) — 80 automated unit tests, zero React/Next.js imports, fully independent of the UI.
 - A fully interactive client-side DCF workbench (live sliders, live sensitivity table, a deterministic natural-language assumption parser).
 - A statically exported Next.js App Router site with correct GitHub Pages subpath handling (`basePath`/`assetPrefix`) — verified to work under `/ai-investment-diligence-platform/`.
 - CI (GitHub Actions) that runs the full test/lint/build pipeline before every deploy.
@@ -90,14 +90,12 @@ A standard Free Cash Flow to Firm (FCFF) build: forecast revenue/EBITDA/EBIT fro
 
 Eight deterministic rules (`src/lib/diligence.ts`) evaluated against the historical, forensic, DCF-sensitivity, and commentary-check outputs — e.g. "if YoY revenue growth decelerates by more than 1 percentage point, emit a Growth Moderation finding." Every finding follows the same structure: **Finding → Supporting Metric (with the exact numbers and direction of change) → Why It Matters → Context → Suggested Diligence Question.**
 
-## AI-Assisted Components — What's Actually Running
+## Deterministic Components
 
-**There is no LLM call anywhere in this application** — no OpenAI, Anthropic, Gemini, or any other paid/free language model API. "AI-assisted" describes two features built as deterministic logic that mimics the *shape* of analyst reasoning:
+There is no LLM call anywhere in this application. The diligence engine and natural-language assumption parser are deterministic, auditable logic:
 
-1. **The Diligence Engine** — plain conditional rules over calculated metrics (not generated text).
-2. **The Natural-Language Assumption Parser** (`src/lib/nlParser.ts`) — clause-by-clause regex matching against a fixed set of recognized phrasings (e.g. "revenue grows 12% for five years"), with anything unrecognized explicitly reported as unparseable rather than guessed.
-
-This is stated explicitly in-app (Dashboard and Methodology pages) so nothing implies a live model is involved.
+1. **Diligence Engine** — plain conditional rules over calculated metrics that produce cited findings and follow-up questions.
+2. **Natural-Language Assumption Parser** — clause-by-clause regex matching against a fixed set of recognized financial assumptions, with unrecognized input explicitly reported rather than guessed.
 
 ## Tech Stack
 
@@ -105,10 +103,10 @@ Next.js 16 (App Router, static export) · React 19 · TypeScript · Tailwind CSS
 
 ## Testing
 
-65 numerical unit tests across 7 files, covering CAGR, margins, DSO/DIO/DPO, the Beneish and Altman models, WACC/CAPM, the full FCFF DCF build (forecast → discounting → terminal value → enterprise/equity bridge), the sensitivity grid, scenario assumptions, the natural-language parser, the diligence rule engine, and number formatting.
+80 numerical unit tests across 8 files, covering CAGR, margins, DSO/DIO/DPO, the Beneish and Altman models, WACC/CAPM, the full FCFF DCF build (forecast → discounting → terminal value → enterprise/equity bridge), the sensitivity grid, scenario assumptions, the natural-language parser, the diligence rule engine, and number formatting.
 
 ```bash
-npm test           # 65/65 passing
+npm test           # 80/80 passing
 npx tsc --noEmit    # clean
 npm run lint         # clean
 npm run build          # static export succeeds
@@ -116,7 +114,7 @@ npm run build          # static export succeeds
 
 ## Deployment
 
-Statically exported and hosted free on **GitHub Pages**, deployed automatically by `.github/workflows/deploy.yml` on every push to `main` (tests → lint → build → deploy). `next.config.ts` auto-detects `GITHUB_ACTIONS` and sets `basePath`/`assetPrefix` to `/ai-investment-diligence-platform` so every asset and route resolves correctly under the Pages subpath — verified in-browser at the live subpath, including client-side navigation and the interactive DCF.
+Statically exported and hosted on **GitHub Pages**, deployed automatically by `.github/workflows/deploy.yml` on every push to `main` (tests → lint → build → deploy). `next.config.ts` auto-detects `GITHUB_ACTIONS` and sets `basePath`/`assetPrefix` to `/ai-investment-diligence-platform` so every asset and route resolves correctly under the Pages subpath — verified in-browser at the live subpath, including client-side navigation and the interactive DCF.
 
 ### Local Setup
 
@@ -153,4 +151,4 @@ A ~5-minute guided walkthrough — what to click, what to say — is in [DEMO_SC
 
 ## Disclaimer
 
-This is an educational/portfolio project, not a production financial system. It uses illustrative demo data for a fictional company, calls no paid or free LLM API, and generates no buy, sell, hold, trading signals, or price targets. Nothing on this site is investment advice.
+This is an educational/portfolio project, not a production financial system. It uses illustrative demo data for a fictional company, calls no LLM API, and generates no buy, sell, hold, trading signals, or price targets. Nothing on this site is investment advice.
