@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getDerivedYears, getRawStatements, latestYear, revenueCagr, ebitdaCagr } from "@/lib/financials";
 import { beneishSeries, altmanZSeries } from "@/lib/forensic";
 import { runDcf, dcfSensitivityTable, defaultAssumptions } from "@/lib/dcf";
@@ -73,7 +74,7 @@ export default function MemoPage() {
           The Beneish M-Score for FY{latestBeneish.year} is {latestBeneish.mScore.toFixed(2)}, and the Altman
           Z&apos;-Score is {latestAltman.zScore.toFixed(2)} ({latestAltman.zone} zone). Both are treated as
           screening indicators requiring further investigation, not conclusions. Full component detail is on the{" "}
-          <a href="/forensic" className="underline">Forensic</a> page.
+          <Link href="/forensic" className="underline">Forensic</Link> page.
         </p>
       </Section>
 

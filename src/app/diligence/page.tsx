@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getDerivedYears, getRawStatements, latestYear } from "@/lib/financials";
 import { beneishSeries, altmanZSeries } from "@/lib/forensic";
 import { dcfSensitivityTable, defaultAssumptions } from "@/lib/dcf";
@@ -47,7 +48,7 @@ export default function DiligencePage() {
       <div className="mb-6 rounded-md border border-border bg-surface-muted px-4 py-3 text-sm text-foreground-muted">
         &ldquo;AI-assisted&rdquo; here means deterministic financial rules and structured reasoning logic
         implemented in TypeScript — conditional checks over calculated metrics, not a generative model.
-        See <a href="/methodology" className="underline">Methodology</a> for the full rule set.
+        See <Link href="/methodology" className="underline">Methodology</Link> for the full rule set.
       </div>
 
       {CATEGORIES.map((category) => {

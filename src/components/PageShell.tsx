@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 export function PageHeader({
   eyebrow,
@@ -87,10 +88,19 @@ export function IllustrativeBanner() {
       <strong>Illustrative demo data.</strong> Meridian Analytics, Inc. is a fictional company built
       for this portfolio project. All figures are constructed, internally-consistent demo data, not
       real filings. See the{" "}
-      <a href="/methodology" className="underline">
+      <Link href="/methodology" className="underline">
         Methodology
+      </Link>{" "}
+      page and{" "}
+      <a
+        href="https://github.com/Aastha2806/ai-investment-diligence-platform/blob/main/DATA_SOURCES.md"
+        target="_blank"
+        rel="noreferrer"
+        className="underline"
+      >
+        DATA_SOURCES.md
       </a>{" "}
-      page and DATA_SOURCES.md in the repository for the full construction notes.
+      in the repository for the full construction notes.
     </div>
   );
 }
