@@ -22,17 +22,17 @@ and Valuation / Transaction Advisory roles.
 
 ## Post 1 — The Project (publish now)
 
-> In June, I shared that I'd cleared CFA Level I. Since then I wanted to see how far I could push some of those concepts into something I actually built, rather than just something I knew on paper.
+> I wanted to see how far I could push some finance concepts into something I actually built, rather than just something I knew on paper.
 >
-> Over the past few weeks I put together an **AI Investment Diligence & Valuation Platform** — a small end-to-end tool that walks through the kind of workflow I'd expect to see in diligence or research: company financials → historical analysis → forensic accounting screens → a full FCFF DCF → scenario analysis → a rule-based diligence layer → an investment memo.
+> Over the past few weeks I put together an **Investment Diligence & Valuation** — a small end-to-end tool that walks through the kind of workflow I'd expect to see in diligence or research: company financials → historical analysis → forensic accounting screens → a full FCFF DCF → scenario analysis → a rule-based diligence layer → an investment memo.
 >
 > A few things I was deliberate about:
 > — Every ratio, CAGR, and DCF output is computed live from the underlying financials, not hard-coded.
-> — The "AI-assisted" diligence engine is actually deterministic, rule-based logic — I didn't want to imply a language model is doing anything it isn't. There's no paid API anywhere in the project.
+> — The "deterministic" diligence engine is actually deterministic, rule-based logic — I didn't want to imply a language model is doing anything it isn't. There is no LLM API in the project.
 > — The company data is illustrative, not real filings, and I say so clearly throughout.
 > — It doesn't generate buy/sell/hold calls or price targets — just valuation ranges, scenario outputs, and diligence questions.
 >
-> It's a fully static site (Next.js/TypeScript), hosted for free on GitHub Pages, with no backend or database behind it.
+> It's a fully static site (Next.js/TypeScript), hosted on GitHub Pages, with no backend or database behind it.
 >
 > Still very much a graduate project, not a production tool — but it was a genuinely useful way to turn some CFA-level concepts (DCF mechanics, WACC, working-capital analysis) into something I had to actually implement and get right, down to writing tests for the calculations.
 >
@@ -100,7 +100,7 @@ A recent finance graduate, CFA Level I, who has gained some practical research e
 
 ### About Section
 
-> I'm a finance graduate working toward roles in Investment Banking, Private Equity/Private Markets, and Equity Research. I cleared CFA Level I in June 2026 and have been focused since on turning that foundation into practical, hands-on work — most recently an AI Investment Diligence & Valuation Platform: a self-built tool covering financial statement analysis, forensic accounting screens, FCFF DCF valuation, scenario analysis, and a rule-based diligence workflow, built end to end in TypeScript and documented in detail (including its own limitations).
+> I'm a finance graduate working toward roles in Investment Banking, Private Equity/Private Markets, and Equity Research. I cleared CFA Level I in June 2026 and have been focused since on turning that foundation into practical, hands-on work — most recently an Investment Diligence & Valuation: a self-built tool covering financial statement analysis, forensic accounting screens, FCFF DCF valuation, scenario analysis, and a rule-based diligence workflow, built end to end in TypeScript and documented in detail (including its own limitations).
 >
 > I'm interested in the mechanics of valuation and diligence — not just the outputs, but understanding exactly how a number was derived and where its assumptions can break. I like building things that are honest about what they are: illustrative data stays labeled as illustrative, a rule-based system doesn't get dressed up as more than it is, and I don't generate outputs (like investment recommendations) that I'm not in a position to stand behind.
 >
