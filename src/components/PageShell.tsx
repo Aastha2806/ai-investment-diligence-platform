@@ -39,8 +39,17 @@ export function Section({
 }
 
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
+  // A caller-supplied "bg-*" utility must win over the default bg-surface. Since Tailwind's
+  // cascade order (not className string order) decides which same-specificity rule applies,
+  // simply appending className isn't enough — bg-surface has to be omitted outright when the
+  // caller overrides the background, otherwise it can silently win and hide light-on-dark text.
+  const hasBackgroundOverride = /(^|\s)bg-/.test(className);
   return (
-    <div className={`rounded-lg border border-border bg-surface p-5 shadow-sm ${className}`}>{children}</div>
+    <div
+      className={`rounded-lg border border-border p-5 shadow-sm ${hasBackgroundOverride ? "" : "bg-surface"} ${className}`}
+    >
+      {children}
+    </div>
   );
 }
 
