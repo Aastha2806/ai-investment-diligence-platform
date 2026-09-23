@@ -14,6 +14,10 @@ and Valuation / Transaction Advisory roles.
 **Live Demo:** https://aastha2806.github.io/ai-investment-diligence-platform/
 **Source Code:** https://github.com/Aastha2806/ai-investment-diligence-platform
 
+## Demo Video
+
+`public/screenshots/demo.webm` in the repo (~82s, real screen recording — Dashboard through Methodology, including the DCF's WACC slider actually changing the valuation). Download it and attach it as a **native LinkedIn video upload** on Post 1 — LinkedIn's own player performs far better than a link to a GitHub-hosted file, and native video gets more reach than a link-out post.
+
 ---
 
 ## Post 1 — The Project (publish now)

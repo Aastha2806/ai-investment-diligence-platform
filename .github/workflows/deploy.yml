@@ -28,6 +28,11 @@ jobs:
           cache: npm
 
       - name: Install dependencies
+        env:
+          # playwright is a devDependency used only by scripts/demo-video (a local
+          # recording script) -- CI doesn't need its browser binary, so skip the
+          # download to keep this step fast.
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
         run: npm ci --legacy-peer-deps
 
       - name: Run tests

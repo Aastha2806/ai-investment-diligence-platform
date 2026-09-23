@@ -7,7 +7,13 @@ An interactive, zero-cost investment diligence and DCF valuation web app — fin
 
 ### Demo
 
-A real walkthrough of the live site — Dashboard → Financials → Forensic → DCF → Diligence → Memo (captured from the actual deployed app, not a mockup):
+A real screen recording of the live site — Dashboard → Financials → Analysis → Forensic → DCF (drag WACC, watch the valuation update) → Scenarios → Diligence → Memo → Methodology. Captured with Playwright driving an actual browser against the deployed app — not a mockup, not stitched screenshots. See [scripts/demo-video](scripts/demo-video) to reproduce it.
+
+<video src="public/screenshots/demo.webm" controls muted width="720">
+Your viewer doesn't render inline video — download <a href="public/screenshots/demo.webm">demo.webm</a> directly, or see the GIF below.
+</video>
+
+If your viewer doesn't render the video above, here's the same walkthrough as a GIF:
 
 ![Demo walkthrough](public/screenshots/demo.gif)
 
