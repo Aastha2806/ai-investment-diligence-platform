@@ -31,7 +31,15 @@ export default function TrendChart({
         <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8 }} />
         {lines.length > 1 && <Legend wrapperStyle={{ fontSize: 12 }} />}
         {lines.map((l) => (
-          <Line key={l.key} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2} dot={{ r: 3 }} />
+          <Line
+            key={l.key}
+            type="monotone"
+            dataKey={l.key}
+            stroke={l.color}
+            strokeWidth={2}
+            dot={{ r: 3 }}
+            isAnimationActive={false}
+          />
         ))}
       </LineChart>
     </ResponsiveContainer>

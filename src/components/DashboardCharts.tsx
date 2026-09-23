@@ -38,8 +38,8 @@ export default function DashboardCharts({ years }: { years: DerivedYear[] }) {
             <YAxis tick={{ fontSize: 12 }} />
             <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8 }} />
             <Legend wrapperStyle={{ fontSize: 12 }} />
-            <Bar dataKey="revenue" name="Revenue" fill={ACCENT_LIGHT} radius={[3, 3, 0, 0]} />
-            <Bar dataKey="ebitda" name="EBITDA" fill={ACCENT} radius={[3, 3, 0, 0]} />
+            <Bar dataKey="revenue" name="Revenue" fill={ACCENT_LIGHT} radius={[3, 3, 0, 0]} isAnimationActive={false} />
+            <Bar dataKey="ebitda" name="EBITDA" fill={ACCENT} radius={[3, 3, 0, 0]} isAnimationActive={false} />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
@@ -54,7 +54,15 @@ export default function DashboardCharts({ years }: { years: DerivedYear[] }) {
             <XAxis dataKey="year" tick={{ fontSize: 12 }} />
             <YAxis tick={{ fontSize: 12 }} unit="%" />
             <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8 }} />
-            <Line type="monotone" dataKey="ebitdaMargin" name="EBITDA Margin" stroke={POSITIVE} strokeWidth={2} dot={{ r: 3 }} />
+            <Line
+              type="monotone"
+              dataKey="ebitdaMargin"
+              name="EBITDA Margin"
+              stroke={POSITIVE}
+              strokeWidth={2}
+              dot={{ r: 3 }}
+              isAnimationActive={false}
+            />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
