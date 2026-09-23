@@ -77,6 +77,34 @@ export default function MemoPage() {
         </p>
       </Section>
 
+      <Section
+        title="DCF Assumptions"
+        description="The base-case forward assumptions behind the valuation below — editable interactively on the DCF page."
+      >
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="min-w-full text-sm">
+            <tbody>
+              {(
+                [
+                  ["Forecast Period", `${defaultAssumptions().forecastYears} years`],
+                  ["Revenue Growth (annual)", formatPercent(defaultAssumptions().revenueGrowth)],
+                  ["EBITDA Margin", formatPercent(defaultAssumptions().ebitdaMargin)],
+                  ["Tax Rate", formatPercent(defaultAssumptions().taxRate)],
+                  ["Capex % of Revenue", formatPercent(defaultAssumptions().capexPctRevenue)],
+                  ["WACC", formatPercent(defaultAssumptions().wacc)],
+                  ["Terminal Growth", formatPercent(defaultAssumptions().terminalGrowth)],
+                ] as [string, string][]
+              ).map(([label, value], i) => (
+                <tr key={label} className={`border-b border-border last:border-0 ${i % 2 === 0 ? "bg-surface" : "bg-surface-muted"}`}>
+                  <td className="px-4 py-2 text-foreground-muted">{label}</td>
+                  <td className="px-4 py-2 text-right font-tabular font-medium text-foreground">{value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
       <Section title="Valuation">
         <Card>
           <dl className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
@@ -135,7 +163,7 @@ export default function MemoPage() {
         </ul>
       </Section>
 
-      <Section title="Areas for Further Investigation">
+      <Section title="Open Questions & Areas for Further Investigation">
         <ul className="list-disc space-y-2 pl-5 text-sm text-foreground-muted">
           <li>Customer concentration and contract-level ARR detail.</li>
           <li>Detailed AR aging schedule behind the DSO / cash-conversion trend.</li>
@@ -144,9 +172,18 @@ export default function MemoPage() {
         </ul>
       </Section>
 
+      <Section title="Limitations">
+        <ul className="list-disc space-y-2 pl-5 text-sm text-foreground-muted">
+          <li>All company data is illustrative/fictional, not real filings — see the Methodology page and DATA_SOURCES.md.</li>
+          <li>DCF forecast assumptions are held flat across the forecast window rather than ramped year by year.</li>
+          <li>Beneish M-Score and Altman Z&apos;-Score are statistical screening indicators, not conclusions or proof of any finding.</li>
+          <li>No real market price exists for this illustrative company, so equity value cannot be benchmarked against a trading price.</li>
+        </ul>
+      </Section>
+
       <div className="rounded-md border border-border bg-surface-muted px-4 py-3 text-xs text-foreground-muted">
         This memo is generated entirely from deterministic calculations over illustrative demo data. It
-        does not constitute investment advice and includes no buy, sell, or hold recommendation.
+        does not constitute investment advice and includes no buy, sell, or hold recommendation or price target.
       </div>
     </div>
   );

@@ -109,3 +109,11 @@ A list of independent, plain conditional rules evaluated against the derived yea
 ## Management Commentary Check (`src/lib/commentaryCheck.ts`)
 
 Each sample commentary quote (`src/data/commentary.json`) is tagged with structured `claims` (e.g. `margin_expansion`, `healthy_cash_conversion`). Each claim has a dedicated evaluator function that compares the claim to the actual computed metrics for that year and returns `supported`, `not supported`, `mixed`, or `not evaluable`, with a plain-language explanation — always in neutral, non-accusatory language.
+
+## AI Limitations
+
+To be explicit: the diligence engine and the natural-language parser are the only two features that use the phrase "AI-assisted," and both are fixed, auditable rule sets, not learned or generative models. That means:
+
+- They cannot handle inputs outside their coded patterns — the parser reports "unable to parse" rather than guessing, and the diligence engine will simply not fire a rule it wasn't written for (it does not infer novel risks).
+- Rule thresholds (e.g. "growth deceleration > 1pp") are illustrative judgment calls, not calibrated against a large historical dataset.
+- Nothing here should be read as a claim that the system "understands" the business the way an analyst does — it recognizes patterns in numbers and phrasing that were explicitly coded for.

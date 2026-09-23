@@ -13,16 +13,21 @@ export default function DcfPage() {
     debt: latest.totalDebt,
     sharesOutstandingMillions: latest.sharesOutstandingMillions,
   };
+  const historicalContext = {
+    revenue: latest.revenue,
+    ebitda: latest.ebitda,
+    ebit: latest.ebit,
+  };
 
   return (
     <div>
       <PageHeader
         eyebrow="DCF"
         title="Interactive FCFF DCF Valuation"
-        description="A full free-cash-flow-to-firm discounted cash flow model, built from the FY2025 base year. Every assumption below is editable, and the entire forecast, discounting, and per-share output recalculates live in the browser."
+        description={`A full free-cash-flow-to-firm discounted cash flow model, forecast forward from the FY${latest.year} actual base year (illustrative data). Every assumption below is editable, and the entire forecast, discounting, and per-share output recalculates live in the browser.`}
       />
       <IllustrativeBanner />
-      <DcfWorkbench base={base} />
+      <DcfWorkbench base={base} historicalContext={historicalContext} />
     </div>
   );
 }

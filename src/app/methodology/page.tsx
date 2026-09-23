@@ -9,6 +9,36 @@ export default function MethodologyPage() {
         description="How every number on this site is calculated. Full technical detail also lives in METHODOLOGY.md, DATA_SOURCES.md, and LIMITATIONS.md in the repository."
       />
 
+      <Section title="Deterministic vs. AI-Assisted — What's Actually Running">
+        <Card>
+          <p className="text-sm leading-relaxed text-foreground">
+            <strong>Everything on this site is a deterministic calculation or a plain conditional rule.
+            There is no LLM call anywhere in this application</strong> — no OpenAI, Anthropic, Gemini,
+            or any other paid or free language model API. Where the UI uses the phrase
+            &ldquo;AI-assisted,&rdquo; it specifically means: structured, rule-based reasoning written
+            in TypeScript that mimics the *shape* of an analyst&apos;s checklist (condition → finding →
+            question), not a model that generates novel text. Two features carry that label:
+          </p>
+          <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-foreground-muted">
+            <li>
+              <strong>The Diligence Engine</strong> (<code>src/lib/diligence.ts</code>) — a fixed list of
+              conditional rules (e.g. &ldquo;if YoY revenue growth decelerates by more than 1 percentage
+              point, emit a Growth Moderation finding citing the exact percentages&rdquo;) evaluated
+              against the calculated metrics.
+            </li>
+            <li>
+              <strong>The Natural-Language Assumption Parser</strong> (<code>src/lib/nlParser.ts</code>) —
+              regular-expression matching against a fixed set of recognized phrasings, not open-ended
+              language understanding.
+            </li>
+          </ul>
+          <p className="mt-3 text-sm text-foreground-muted">
+            Everything else — every margin, ratio, CAGR, DCF output, Beneish/Altman score, and sensitivity
+            cell — is a direct mathematical formula with no &ldquo;AI&rdquo; framing at all; formulas are listed below.
+          </p>
+        </Card>
+      </Section>
+
       <Section title="Data">
         <p className="text-sm leading-relaxed text-foreground-muted">
           Meridian Analytics, Inc. is a fictional company created for this project. Its financial

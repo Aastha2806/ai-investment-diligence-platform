@@ -30,7 +30,13 @@ const FIELDS: AssumptionField[] = [
   { key: "terminalGrowth", label: "Terminal Growth", min: 0, max: 0.06, step: 0.0025, isPercent: true },
 ];
 
-export default function DcfWorkbench({ base }: { base: DcfBase }) {
+interface HistoricalContext {
+  revenue: number;
+  ebitda: number;
+  ebit: number;
+}
+
+export default function DcfWorkbench({ base, historicalContext }: { base: DcfBase; historicalContext?: HistoricalContext }) {
   const [assumptions, setAssumptions] = useState<DcfAssumptions>(defaultAssumptions());
   const [nlInput, setNlInput] = useState(NL_PARSER_EXAMPLE);
   const [parsedPreview, setParsedPreview] = useState<ReturnType<typeof parseAssumptions> | null>(null);
@@ -38,8 +44,15 @@ export default function DcfWorkbench({ base }: { base: DcfBase }) {
 
   const result = useMemo(() => runDcf(base, assumptions), [base, assumptions]);
 
-  const waccRange = WACC_STEPS.map((d) => +(assumptions.wacc + d).toFixed(4)).filter((w) => w > assumptions.terminalGrowth);
+  // WACC must exceed terminal growth for a finite Gordon Growth terminal value (see runDcf).
+  // Clamping (rather than filtering) guarantees the sensitivity grid never renders an empty
+  // row set, even if the current WACC assumption is dragged close to terminal growth.
+  const minWaccForGrid = assumptions.terminalGrowth + 0.0075;
+  const waccRange = Array.from(
+    new Set(WACC_STEPS.map((d) => Math.max(+(assumptions.wacc + d).toFixed(4), +minWaccForGrid.toFixed(4))))
+  );
   const tgrRange = TGR_STEPS.map((d) => +(assumptions.terminalGrowth + d).toFixed(4));
+  const waccExceedsTerminalGrowth = assumptions.wacc > assumptions.terminalGrowth;
   const sensitivity = useMemo(
     () => dcfSensitivityTable(base, assumptions, waccRange, tgrRange),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,20 +80,34 @@ export default function DcfWorkbench({ base }: { base: DcfBase }) {
     setParsedPreview(null);
   }
 
-  const forecastColumns = result.forecast.map((f) => `FY${f.year}`);
+  const actualColumn = historicalContext ? [`FY${base.baseYear} (Actual)`] : [];
+  const forecastColumns = [...actualColumn, ...result.forecast.map((f) => `FY${f.year} (Forecast)`)];
+  const dash = "—";
+  const withActual = (forecastValues: string[], actualValue?: string) =>
+    historicalContext ? [actualValue ?? dash, ...forecastValues] : forecastValues;
+
   const forecastRows: DataTableRow[] = [
-    { label: "Revenue", values: result.forecast.map((f) => formatMillions(f.revenue)) },
-    { label: "EBITDA", values: result.forecast.map((f) => formatMillions(f.ebitda)) },
-    { label: "D&A", values: result.forecast.map((f) => formatMillions(f.da)) },
-    { label: "EBIT", values: result.forecast.map((f) => formatMillions(f.ebit)) },
-    { label: "Taxes", values: result.forecast.map((f) => formatMillions(f.taxes)) },
-    { label: "NOPAT", values: result.forecast.map((f) => formatMillions(f.nopat)) },
-    { label: "+ D&A Add-back", values: result.forecast.map((f) => formatMillions(f.da)) },
-    { label: "- Capex", values: result.forecast.map((f) => formatMillions(-f.capex)) },
-    { label: "- Change in NWC", values: result.forecast.map((f) => formatMillions(-f.changeInNwc)) },
-    { label: "FCFF", values: result.forecast.map((f) => formatMillions(f.fcff)), emphasize: true },
-    { label: "Discount Factor", values: result.forecast.map((f) => f.discountFactor.toFixed(3)) },
-    { label: "PV of FCFF", values: result.forecast.map((f) => formatMillions(f.pvFcff)), emphasize: true },
+    {
+      label: "Revenue",
+      values: withActual(result.forecast.map((f) => formatMillions(f.revenue)), historicalContext && formatMillions(historicalContext.revenue)),
+    },
+    {
+      label: "EBITDA",
+      values: withActual(result.forecast.map((f) => formatMillions(f.ebitda)), historicalContext && formatMillions(historicalContext.ebitda)),
+    },
+    { label: "D&A", values: withActual(result.forecast.map((f) => formatMillions(f.da))) },
+    {
+      label: "EBIT",
+      values: withActual(result.forecast.map((f) => formatMillions(f.ebit)), historicalContext && formatMillions(historicalContext.ebit)),
+    },
+    { label: "Taxes", values: withActual(result.forecast.map((f) => formatMillions(f.taxes))) },
+    { label: "NOPAT", values: withActual(result.forecast.map((f) => formatMillions(f.nopat))) },
+    { label: "D&A Add-back", values: withActual(result.forecast.map((f) => formatMillions(f.da))) },
+    { label: "Less: Capex", values: withActual(result.forecast.map((f) => formatMillions(-f.capex))) },
+    { label: "Less: Change in NWC", values: withActual(result.forecast.map((f) => formatMillions(-f.changeInNwc))) },
+    { label: "FCFF", values: withActual(result.forecast.map((f) => formatMillions(f.fcff))), emphasize: true },
+    { label: "Discount Factor", values: withActual(result.forecast.map((f) => f.discountFactor.toFixed(3))) },
+    { label: "PV of FCFF", values: withActual(result.forecast.map((f) => formatMillions(f.pvFcff))), emphasize: true },
   ];
 
   return (
@@ -172,6 +199,15 @@ export default function DcfWorkbench({ base }: { base: DcfBase }) {
           </div>
         </div>
       </Card>
+
+      {!waccExceedsTerminalGrowth && (
+        <div className="rounded-md border border-negative/40 bg-[#fbeceb] px-4 py-3 text-sm text-negative">
+          <strong>WACC must exceed terminal growth</strong> for the Gordon Growth terminal value formula
+          to produce a finite result. With current assumptions ({formatPercent(assumptions.wacc)} WACC ≤{" "}
+          {formatPercent(assumptions.terminalGrowth)} terminal growth), terminal value is being held at
+          $0 below — raise WACC or lower terminal growth to see a meaningful valuation.
+        </div>
+      )}
 
       <Card className="bg-accent-strong text-white">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">

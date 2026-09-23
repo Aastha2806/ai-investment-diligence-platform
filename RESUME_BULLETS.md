@@ -5,7 +5,7 @@ Pick the set that matches the role you're applying for. Each bullet describes fu
 ## Investment Banking
 
 - Built a full-stack investment diligence platform implementing a Free Cash Flow to Firm DCF with live, interactive assumption sensitivity (WACC × terminal growth) and a three-scenario (downside/base/upside) valuation framework, deployed as a zero-cost static site.
-- Designed a five-year financial model (revenue, EBITDA, EBIT, CFO, capex, leverage) with fully derived — not hard-coded — margins, CAGRs, and credit ratios, validated by 50+ automated numerical unit tests.
+- Designed a five-year financial model (revenue, EBITDA, EBIT, CFO, capex, leverage) with fully derived — not hard-coded — margins, CAGRs, and credit ratios, validated by 65 automated numerical unit tests.
 - Implemented an enterprise-value-to-equity-value bridge and per-share valuation output with a transparent, documented formula set (published in-app and in a methodology doc), demonstrating fluency in standard valuation mechanics.
 
 ## Private Equity / Private Markets
@@ -23,5 +23,5 @@ Pick the set that matches the role you're applying for. Each bullet describes fu
 ## Equity Research
 
 - Built a research-workflow web application covering company profile, five-year historical financial analysis, forensic accounting screens, DCF valuation, scenario analysis, and a structured investment memo, computed end-to-end from a single financial dataset with no hard-coded derived figures.
-- Implemented and unit-tested (54 automated tests) a financial calculation engine covering CAGR, margin trends, leverage ratios, working-capital days, Beneish/Altman screening models, and a full FCFF DCF with sensitivity analysis.
+- Implemented and unit-tested (65 automated tests) a financial calculation engine covering CAGR, margin trends, leverage ratios, working-capital days, Beneish/Altman screening models, and a full FCFF DCF with sensitivity analysis.
 - Authored a transparent, publication-quality methodology document explaining every formula and stated limitation, mirroring the documentation standard expected of sell-side/buy-side research output.

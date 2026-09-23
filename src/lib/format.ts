@@ -1,6 +1,7 @@
 export function formatCurrency(value: number, opts: { decimals?: number } = {}): string {
   const decimals = opts.decimals ?? 1;
-  return `$${value.toLocaleString("en-US", {
+  const sign = value < 0 ? "-" : "";
+  return `${sign}$${Math.abs(value).toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   })}`;

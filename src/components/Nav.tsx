@@ -39,6 +39,7 @@ export default function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={isActive ? "page" : undefined}
                 className={`whitespace-nowrap rounded-t-md border-b-2 px-3 py-2 transition-colors ${
                   isActive
                     ? "border-accent text-accent-strong font-semibold"
