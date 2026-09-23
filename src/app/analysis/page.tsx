@@ -19,6 +19,8 @@ export default function AnalysisPage() {
     { label: "Net Margin", values: years.slice(1).map((y) => formatPercent(y.netMargin)) },
     { label: "CFO / Net Income", values: years.slice(1).map((y) => formatMultiple(y.cfoToNetIncome)) },
     { label: "Capex / Revenue", values: years.slice(1).map((y) => formatPercent(y.capexToRevenue)) },
+    { label: "Capex / D&A", values: years.slice(1).map((y) => formatMultiple(y.capexToDA)) },
+    { label: "Cash Conversion Cycle (days)", values: years.slice(1).map((y) => y.cashConversionCycle.toFixed(1)) },
     { label: "Total Debt / EBITDA", values: years.slice(1).map((y) => formatMultiple(y.debtToEbitda)) },
     { label: "Net Debt / EBITDA", values: years.slice(1).map((y) => formatMultiple(y.netDebtToEbitda)) },
     { label: "Net Working Capital ($M)", values: years.slice(1).map((y) => y.netWorkingCapital.toFixed(1)) },
@@ -82,6 +84,75 @@ export default function AnalysisPage() {
               }))}
               lines={[{ key: "Net Debt / EBITDA", color: "#b3261e" }]}
               unit="x"
+            />
+          </Card>
+        </div>
+      </Section>
+
+      <Section title="Margins & Cash Quality">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <Card>
+            <p className="mb-2 text-xs font-medium uppercase tracking-wide text-foreground-muted">
+              EBITDA / EBIT / Net Margin (%)
+            </p>
+            <TrendChart
+              data={years.map((y) => ({
+                year: `FY${y.year}`,
+                "EBITDA Margin": +(y.ebitdaMargin * 100).toFixed(1),
+                "EBIT Margin": +(y.ebitMargin * 100).toFixed(1),
+                "Net Margin": +(y.netMargin * 100).toFixed(1),
+              }))}
+              lines={[
+                { key: "EBITDA Margin", color: "#1c3d5a" },
+                { key: "EBIT Margin", color: "#7896ab" },
+                { key: "Net Margin", color: "#1a7a4c" },
+              ]}
+              unit="%"
+            />
+          </Card>
+          <Card>
+            <p className="mb-2 text-xs font-medium uppercase tracking-wide text-foreground-muted">
+              CFO vs. Net Income ($M)
+            </p>
+            <TrendChart
+              data={years.map((y) => ({
+                year: `FY${y.year}`,
+                CFO: Math.round(y.cfo),
+                "Net Income": Math.round(y.netIncome),
+              }))}
+              lines={[
+                { key: "CFO", color: "#1c3d5a" },
+                { key: "Net Income", color: "#9a6a00" },
+              ]}
+              unit="M"
+            />
+          </Card>
+        </div>
+      </Section>
+
+      <Section title="Capital Intensity & Working Capital">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <Card>
+            <p className="mb-2 text-xs font-medium uppercase tracking-wide text-foreground-muted">
+              Capex vs. D&amp;A ($M)
+            </p>
+            <TrendChart
+              data={years.map((y) => ({ year: `FY${y.year}`, Capex: Math.round(y.capex), "D&A": Math.round(y.da) }))}
+              lines={[
+                { key: "Capex", color: "#1c3d5a" },
+                { key: "D&A", color: "#9a6a00" },
+              ]}
+              unit="M"
+            />
+          </Card>
+          <Card>
+            <p className="mb-2 text-xs font-medium uppercase tracking-wide text-foreground-muted">
+              Cash Conversion Cycle (days)
+            </p>
+            <TrendChart
+              data={years.map((y) => ({ year: `FY${y.year}`, CCC: +y.cashConversionCycle.toFixed(1) }))}
+              lines={[{ key: "CCC", color: "#b3261e" }]}
+              unit=" d"
             />
           </Card>
         </div>

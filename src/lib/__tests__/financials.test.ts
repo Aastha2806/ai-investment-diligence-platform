@@ -94,6 +94,47 @@ describe("deriveYears", () => {
     expect(y.dpo).toBeCloseTo(36.5, 6);
     expect(y.cashConversionCycle).toBeCloseTo(y.dso + y.dio - y.dpo, 6);
   });
+
+  it("computes gross profit and gross margin from revenue and COGS", () => {
+    const years = deriveYears([stmt({ revenue: 100, cogs: 40 })]);
+    expect(years[0].grossProfit).toBeCloseTo(60, 6);
+    expect(years[0].grossMargin).toBeCloseTo(0.6, 6);
+  });
+
+  it("exposes EBT and taxes consistently with net income (EBT - taxes = net income)", () => {
+    const years = deriveYears([stmt({ ebitda: 30, da: 5, interestExpense: 2, taxRate: 0.25 })]);
+    const y = years[0];
+    expect(y.ebt).toBeCloseTo(y.ebit - 2, 6);
+    expect(y.taxes).toBeCloseTo(y.ebt * 0.25, 6);
+    expect(y.ebt - y.taxes).toBeCloseTo(y.netIncome, 10);
+  });
+
+  it("computes total liabilities and equity from the balance sheet fields", () => {
+    const years = deriveYears([stmt({ currentLiabilities: 20, totalDebt: 50, totalAssets: 200 })]);
+    const y = years[0];
+    expect(y.totalLiabilities).toBeCloseTo(70, 6);
+    expect(y.equity).toBeCloseTo(130, 6);
+    expect(y.totalAssets).toBeCloseTo(y.totalLiabilities + y.equity, 10); // balance sheet balances
+  });
+
+  it("computes capex/D&A and leaves it null when D&A is zero", () => {
+    const years = deriveYears([stmt({ capex: 8, da: 5 }), stmt({ year: 2022, da: 0 })]);
+    expect(years[0].capexToDA).toBeCloseTo(1.6, 6);
+    expect(years[1].capexToDA).toBeNull();
+  });
+
+  it("leaves changeInNwc and fcff null for the first year, then computes them from the prior year", () => {
+    const y1 = stmt({ year: 2021, currentAssets: 40, currentLiabilities: 20 });
+    const y2 = stmt({ year: 2022, currentAssets: 50, currentLiabilities: 22 });
+    const years = deriveYears([y1, y2]);
+    expect(years[0].changeInNwc).toBeNull();
+    expect(years[0].fcff).toBeNull();
+    expect(years[1].changeInNwc).toBeCloseTo((50 - 22) - (40 - 20), 6); // 28 - 20 = 8
+
+    const nopat = years[1].ebit - years[1].ebit * years[1].taxRate;
+    const expectedFcff = nopat + years[1].da - years[1].capex - years[1].changeInNwc!;
+    expect(years[1].fcff).toBeCloseTo(expectedFcff, 6);
+  });
 });
 
 describe("revenueCagr / ebitdaCagr", () => {
@@ -114,9 +155,56 @@ describe("dataset integrity", () => {
     }
   });
 
-  it("loads 5 years of derived data with expected ordering", () => {
+  it("provides at least 4 complete historical actual fiscal years, including FY2022-FY2025", () => {
     const years = getDerivedYears();
-    expect(years).toHaveLength(5);
+    expect(years.length).toBeGreaterThanOrEqual(4);
+    const yearNumbers = years.map((y) => y.year);
+    for (const required of [2022, 2023, 2024, 2025]) {
+      expect(yearNumbers).toContain(required);
+    }
     expect(years.map((y) => y.year)).toEqual([2021, 2022, 2023, 2024, 2025]);
+  });
+
+  it("reconciles the full income statement chain for every year: Revenue -> Gross Profit -> EBITDA -> EBIT -> EBT -> Net Income", () => {
+    const years = getDerivedYears();
+    for (const y of years) {
+      expect(y.grossProfit).toBeCloseTo(y.revenue - y.cogs, 6);
+      expect(y.grossProfit - y.sgaExpense).toBeCloseTo(y.ebitda, 6);
+      expect(y.ebit).toBeCloseTo(y.ebitda - y.da, 6);
+      expect(y.ebt).toBeCloseTo(y.ebit - y.interestExpense, 6);
+      expect(y.taxes).toBeCloseTo(y.ebt * y.taxRate, 6);
+      expect(y.netIncome).toBeCloseTo(y.ebt - y.taxes, 10);
+    }
+  });
+
+  it("reconciles the balance sheet for every year: Total Assets = Total Liabilities + Equity", () => {
+    const years = getDerivedYears();
+    for (const y of years) {
+      expect(y.totalLiabilities).toBeCloseTo(y.currentLiabilities + y.totalDebt, 6);
+      expect(y.totalAssets).toBeCloseTo(y.totalLiabilities + y.equity, 6);
+    }
+  });
+
+  it("has no NaN or undefined in any numeric field across every historical year", () => {
+    const years = getDerivedYears();
+    for (const y of years) {
+      for (const [key, value] of Object.entries(y)) {
+        if (typeof value === "number") {
+          expect(Number.isNaN(value), `${key} is NaN in FY${y.year}`).toBe(false);
+        } else {
+          expect(value === undefined, `${key} is undefined in FY${y.year}`).toBe(false);
+        }
+      }
+    }
+  });
+
+  it("computes ChangeInNwc/FCFF for every year except the first, never silently substituting a fabricated value", () => {
+    const years = getDerivedYears();
+    expect(years[0].changeInNwc).toBeNull();
+    expect(years[0].fcff).toBeNull();
+    for (const y of years.slice(1)) {
+      expect(y.changeInNwc).not.toBeNull();
+      expect(y.fcff).not.toBeNull();
+    }
   });
 });

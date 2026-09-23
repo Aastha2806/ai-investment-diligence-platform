@@ -13,10 +13,20 @@ export default function DcfPage() {
     debt: latest.totalDebt,
     sharesOutstandingMillions: latest.sharesOutstandingMillions,
   };
+  // Unlevered taxes/NOPAT (EBIT x tax rate), matching the DCF forecast's own methodology —
+  // distinct from the levered "Taxes"/"Net Income" shown on the Financials page, which net out
+  // actual interest expense. This keeps the Actual column comparable to the forecast columns.
+  const unleveredTaxes = latest.ebit * latest.taxRate;
   const historicalContext = {
     revenue: latest.revenue,
     ebitda: latest.ebitda,
+    da: latest.da,
     ebit: latest.ebit,
+    taxes: unleveredTaxes,
+    nopat: latest.ebit - unleveredTaxes,
+    capex: latest.capex,
+    changeInNwc: latest.changeInNwc,
+    fcff: latest.fcff,
   };
 
   return (

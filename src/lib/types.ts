@@ -23,7 +23,11 @@ export interface FinancialStatementYear {
 }
 
 export interface DerivedYear extends FinancialStatementYear {
+  grossProfit: number;
+  grossMargin: number;
   ebit: number;
+  ebt: number;
+  taxes: number;
   netIncome: number;
   ebitdaMargin: number;
   ebitMargin: number;
@@ -31,15 +35,21 @@ export interface DerivedYear extends FinancialStatementYear {
   revenueGrowth: number | null;
   ebitdaGrowth: number | null;
   netWorkingCapital: number;
+  changeInNwc: number | null;
   netDebt: number;
+  totalLiabilities: number;
+  equity: number;
   cfoToNetIncome: number | null;
   capexToRevenue: number;
+  capexToDA: number | null;
   netDebtToEbitda: number | null;
   debtToEbitda: number | null;
   dso: number;
   dio: number;
   dpo: number;
   cashConversionCycle: number;
+  /** Unlevered FCFF (NOPAT + D&A − Capex − ΔNWC), same methodology as the DCF forecast. Null for the first year, since ΔNWC needs a prior year. */
+  fcff: number | null;
 }
 
 export interface DcfAssumptions {

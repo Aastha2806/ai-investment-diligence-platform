@@ -14,6 +14,9 @@ export function deriveYears(statements: FinancialStatementYear[]): DerivedYear[]
   return statements.map((stmt, i) => {
     const prev = i > 0 ? statements[i - 1] : null;
 
+    const grossProfit = stmt.revenue - stmt.cogs;
+    const grossMargin = stmt.revenue !== 0 ? grossProfit / stmt.revenue : 0;
+
     const ebit = stmt.ebitda - stmt.da;
     const ebt = ebit - stmt.interestExpense;
     const taxes = ebt * stmt.taxRate;
@@ -27,10 +30,14 @@ export function deriveYears(statements: FinancialStatementYear[]): DerivedYear[]
     const ebitdaGrowth = prev ? (stmt.ebitda - prev.ebitda) / prev.ebitda : null;
 
     const netWorkingCapital = stmt.currentAssets - stmt.currentLiabilities;
+    const changeInNwc = prev ? netWorkingCapital - (prev.currentAssets - prev.currentLiabilities) : null;
     const netDebt = stmt.totalDebt - stmt.cash;
+    const totalLiabilities = stmt.currentLiabilities + stmt.totalDebt;
+    const equity = stmt.totalAssets - totalLiabilities;
 
     const cfoToNetIncome = netIncome !== 0 ? stmt.cfo / netIncome : null;
     const capexToRevenue = stmt.revenue !== 0 ? stmt.capex / stmt.revenue : 0;
+    const capexToDA = stmt.da !== 0 ? stmt.capex / stmt.da : null;
     const netDebtToEbitda = stmt.ebitda !== 0 ? netDebt / stmt.ebitda : null;
     const debtToEbitda = stmt.ebitda !== 0 ? stmt.totalDebt / stmt.ebitda : null;
 
@@ -39,9 +46,17 @@ export function deriveYears(statements: FinancialStatementYear[]): DerivedYear[]
     const dpo = stmt.cogs !== 0 ? (stmt.payables / stmt.cogs) * 365 : 0;
     const cashConversionCycle = dso + dio - dpo;
 
+    // Unlevered FCFF, same methodology as the DCF forecast (NOPAT off EBIT, not net income).
+    const nopat = ebit - ebit * stmt.taxRate;
+    const fcff = changeInNwc !== null ? nopat + stmt.da - stmt.capex - changeInNwc : null;
+
     return {
       ...stmt,
+      grossProfit,
+      grossMargin,
       ebit,
+      ebt,
+      taxes,
       netIncome,
       ebitdaMargin,
       ebitMargin,
@@ -49,15 +64,20 @@ export function deriveYears(statements: FinancialStatementYear[]): DerivedYear[]
       revenueGrowth,
       ebitdaGrowth,
       netWorkingCapital,
+      changeInNwc,
       netDebt,
+      totalLiabilities,
+      equity,
       cfoToNetIncome,
       capexToRevenue,
+      capexToDA,
       netDebtToEbitda,
       debtToEbitda,
       dso,
       dio,
       dpo,
       cashConversionCycle,
+      fcff,
     };
   });
 }

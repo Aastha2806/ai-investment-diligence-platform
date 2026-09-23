@@ -33,7 +33,13 @@ const FIELDS: AssumptionField[] = [
 interface HistoricalContext {
   revenue: number;
   ebitda: number;
+  da: number;
   ebit: number;
+  taxes: number;
+  nopat: number;
+  capex: number;
+  changeInNwc: number | null;
+  fcff: number | null;
 }
 
 export default function DcfWorkbench({ base, historicalContext }: { base: DcfBase; historicalContext?: HistoricalContext }) {
@@ -95,17 +101,45 @@ export default function DcfWorkbench({ base, historicalContext }: { base: DcfBas
       label: "EBITDA",
       values: withActual(result.forecast.map((f) => formatMillions(f.ebitda)), historicalContext && formatMillions(historicalContext.ebitda)),
     },
-    { label: "D&A", values: withActual(result.forecast.map((f) => formatMillions(f.da))) },
+    {
+      label: "D&A",
+      values: withActual(result.forecast.map((f) => formatMillions(f.da)), historicalContext && formatMillions(historicalContext.da)),
+    },
     {
       label: "EBIT",
       values: withActual(result.forecast.map((f) => formatMillions(f.ebit)), historicalContext && formatMillions(historicalContext.ebit)),
     },
-    { label: "Taxes", values: withActual(result.forecast.map((f) => formatMillions(f.taxes))) },
-    { label: "NOPAT", values: withActual(result.forecast.map((f) => formatMillions(f.nopat))) },
-    { label: "D&A Add-back", values: withActual(result.forecast.map((f) => formatMillions(f.da))) },
-    { label: "Less: Capex", values: withActual(result.forecast.map((f) => formatMillions(-f.capex))) },
-    { label: "Less: Change in NWC", values: withActual(result.forecast.map((f) => formatMillions(-f.changeInNwc))) },
-    { label: "FCFF", values: withActual(result.forecast.map((f) => formatMillions(f.fcff))), emphasize: true },
+    {
+      label: "Taxes",
+      values: withActual(result.forecast.map((f) => formatMillions(f.taxes)), historicalContext && formatMillions(historicalContext.taxes)),
+    },
+    {
+      label: "NOPAT",
+      values: withActual(result.forecast.map((f) => formatMillions(f.nopat)), historicalContext && formatMillions(historicalContext.nopat)),
+    },
+    {
+      label: "D&A Add-back",
+      values: withActual(result.forecast.map((f) => formatMillions(f.da)), historicalContext && formatMillions(historicalContext.da)),
+    },
+    {
+      label: "Less: Capex",
+      values: withActual(result.forecast.map((f) => formatMillions(-f.capex)), historicalContext && formatMillions(-historicalContext.capex)),
+    },
+    {
+      label: "Less: Change in NWC",
+      values: withActual(
+        result.forecast.map((f) => formatMillions(-f.changeInNwc)),
+        historicalContext && historicalContext.changeInNwc !== null ? formatMillions(-historicalContext.changeInNwc) : undefined
+      ),
+    },
+    {
+      label: "FCFF",
+      values: withActual(
+        result.forecast.map((f) => formatMillions(f.fcff)),
+        historicalContext && historicalContext.fcff !== null ? formatMillions(historicalContext.fcff) : undefined
+      ),
+      emphasize: true,
+    },
     { label: "Discount Factor", values: withActual(result.forecast.map((f) => f.discountFactor.toFixed(3))) },
     { label: "PV of FCFF", values: withActual(result.forecast.map((f) => formatMillions(f.pvFcff))), emphasize: true },
   ];
