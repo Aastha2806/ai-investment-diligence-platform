@@ -15,28 +15,8 @@ Your viewer doesn't render inline video — download <a href="public/screenshots
 
 If your viewer doesn't render the video above, here's the same walkthrough as a GIF:
 
-![Demo walkthrough](public/screenshots/demo.gif)
 
-### Screenshots
-
-**Dashboard**
-![Dashboard](public/screenshots/dashboard.png)
-
-**Interactive FCFF DCF**
-![DCF](public/screenshots/dcf.png)
-
-**Forensic & Accounting Analysis**
-![Forensic Analysis](public/screenshots/forensic.png)
-
-**Diligence Engine**
-![Diligence Engine](public/screenshots/diligence.png)
-
-**Investment Memo**
-![Investment Memo](public/screenshots/memo.png)
-
-**Methodology**
-![Methodology](public/screenshots/methodology.png)
-
+#
 ## What This Project Does
 
 It walks a single illustrative company through a full diligence-and-valuation workflow — **Company → Financials → Historical Analysis → Forensic Analysis → DCF Valuation → Scenario Analysis → Diligence → Investment Memo** — with every margin, ratio, CAGR, DCF output, and forensic score computed live from raw line items, not hard-coded. It produces valuation ranges, scenario outputs, and diligence questions — **never a buy, sell, hold, or price-target recommendation.**
