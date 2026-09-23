@@ -33,13 +33,10 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Type check
-        run: npx tsc --noEmit
-
       - name: Lint
         run: npm run lint
 
-      - name: Build static export
+      - name: Build static export (includes TypeScript check)
         run: npm run build
 
       - name: Add .nojekyll
