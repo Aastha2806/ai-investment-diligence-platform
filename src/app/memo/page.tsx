@@ -34,8 +34,8 @@ export default function MemoPage() {
     <div>
       <PageHeader
         eyebrow="Memo"
-        title="Investment Diligence Memo"
-        description={`${companyData.name} (${companyData.ticker}) — FY${first.year}–FY${latest.year} historical review and DCF-based valuation summary. Educational / portfolio output; not a recommendation.`}
+        title="Investment Memo"
+        description={`${companyData.name} (${companyData.ticker}) — FY${first.year}–FY${latest.year} review and valuation summary.`}
       />
       <IllustrativeBanner />
 
@@ -183,8 +183,7 @@ export default function MemoPage() {
       </Section>
 
       <div className="rounded-md border border-border bg-surface-muted px-4 py-3 text-xs text-foreground-muted">
-        This memo is generated entirely from deterministic calculations over illustrative demo data. It
-        does not constitute investment advice and includes no buy, sell, or hold recommendation or price target.
+        No buy, sell, hold, or price-target recommendation is made.
       </div>
     </div>
   );

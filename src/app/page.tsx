@@ -5,7 +5,6 @@ import companyData from "@/data/company.json";
 import { formatMillions, formatPercent, formatMultiple, formatCurrency } from "@/lib/format";
 import { PageHeader, Section, StatCard, IllustrativeBanner, Card } from "@/components/PageShell";
 import DashboardCharts from "@/components/DashboardCharts";
-import Link from "next/link";
 
 export default function DashboardPage() {
   const years = getDerivedYears();
@@ -28,46 +27,15 @@ export default function DashboardPage() {
     <div>
       <PageHeader
         eyebrow="Dashboard"
-        title={`${companyData.name} (${companyData.ticker})`}
-        description={`${companyData.sector} · ${companyData.headquarters} · FY${years[0].year}–FY${latest.year}`}
+        title="Investment Diligence & Valuation"
+        description="Financial analysis, forensic screens, DCF valuation and diligence — in one workflow."
       />
-      <Card className="mb-6 border-accent/20 bg-[#f4f7fa]">
-        <p className="text-xs font-semibold uppercase tracking-wider text-accent">What This Is</p>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-foreground">
-          A full investment-diligence and valuation workflow — financial statement analysis, forensic
-          accounting screens, an interactive FCFF DCF, scenario analysis, an{" "}
-          <strong>AI-assisted diligence engine</strong>, and an investment memo — built end to end as
-          deterministic TypeScript, statically hosted for $0. &ldquo;AI-assisted&rdquo; means rule-based
-          logic over calculated metrics, not a paid LLM; see{" "}
-          <Link href="/methodology" className="underline">
-            Methodology
-          </Link>{" "}
-          for exactly what&apos;s deterministic versus rule-based presentation.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Link href="/dcf" className="rounded-md bg-accent px-3 py-1.5 text-xs font-medium text-white hover:bg-accent-strong">
-            Try the interactive DCF →
-          </Link>
-          <Link href="/diligence" className="rounded-md border border-accent px-3 py-1.5 text-xs font-medium text-accent hover:bg-accent hover:text-white">
-            See the diligence engine →
-          </Link>
-          <Link href="/forensic" className="rounded-md border border-border px-3 py-1.5 text-xs font-medium text-foreground-muted hover:border-accent hover:text-accent">
-            Forensic screens →
-          </Link>
-          <a
-            href="https://github.com/Aastha2806/ai-investment-diligence-platform"
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-md border border-border px-3 py-1.5 text-xs font-medium text-foreground-muted hover:border-accent hover:text-accent"
-          >
-            View source on GitHub →
-          </a>
-        </div>
-      </Card>
-
       <IllustrativeBanner />
 
-      <Section title="Latest Fiscal Year Snapshot" description={`FY${latest.year}, USD millions unless noted`}>
+      <Section
+        title={`${companyData.name} (${companyData.ticker}) — FY${latest.year} Snapshot`}
+        description={`${companyData.sector} · USD millions unless noted`}
+      >
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           <StatCard label="Revenue" value={formatMillions(latest.revenue)} sublabel={`${formatPercent(latest.revenueGrowth)} YoY growth`} />
           <StatCard label="EBITDA" value={formatMillions(latest.ebitda)} sublabel={`${formatPercent(latest.ebitdaMargin)} margin`} />

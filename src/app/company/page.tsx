@@ -90,14 +90,6 @@ export default function CompanyPage() {
           </Section>
         </div>
       </div>
-
-      <Section title="Notes">
-        <ul className="list-disc space-y-2 pl-5 text-sm text-foreground-muted">
-          {companyData.notes.map((n) => (
-            <li key={n}>{n}</li>
-          ))}
-        </ul>
-      </Section>
     </div>
   );
 }

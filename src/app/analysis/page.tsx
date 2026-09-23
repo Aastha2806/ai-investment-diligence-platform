@@ -29,7 +29,7 @@ export default function AnalysisPage() {
       <PageHeader
         eyebrow="Analysis"
         title="Historical Financial Analysis"
-        description={`Trend and ratio analysis over FY${first.year}–FY${latest.year}, computed directly from the financial statements.`}
+        description={`Growth, margin, and leverage trends, FY${first.year}–FY${latest.year}.`}
       />
       <IllustrativeBanner />
 

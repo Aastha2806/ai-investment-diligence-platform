@@ -19,7 +19,7 @@ export default function ScenariosPage() {
       <PageHeader
         eyebrow="Scenarios"
         title="Scenario Analysis"
-        description="Downside, base, and upside cases with distinct forward assumptions, each run through the same DCF engine. No scenario is presented as the 'correct' outcome."
+        description="Downside, base, and upside cases through the same DCF engine."
       />
       <IllustrativeBanner />
       <ScenarioSwitcher base={base} />

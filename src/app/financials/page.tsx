@@ -38,7 +38,7 @@ export default function FinancialsPage() {
       <PageHeader
         eyebrow="Financials"
         title="Financial Statements"
-        description="Five years of historical financials. Every margin, growth rate, and derived line below is calculated in the browser from the underlying figures — nothing is hard-coded."
+        description="Five-year statement history, growth, and margins."
       />
       <IllustrativeBanner />
 

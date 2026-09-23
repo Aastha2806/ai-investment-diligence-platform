@@ -84,24 +84,13 @@ export function StatCard({
 
 export function IllustrativeBanner() {
   return (
-    <div className="mb-6 rounded-md border border-watch/40 bg-[#fdf6e8] px-4 py-3 text-sm text-[#6b4c00]">
-      <strong>Illustrative demo data.</strong> Meridian Analytics, Inc. is a fictional company built
-      for this portfolio project. All figures are constructed, internally-consistent demo data, not
-      real filings. See the{" "}
+    <p className="mb-6 text-xs text-foreground-muted">
+      Illustrative data for a fictional company — see{" "}
       <Link href="/methodology" className="underline">
         Methodology
-      </Link>{" "}
-      page and{" "}
-      <a
-        href="https://github.com/Aastha2806/ai-investment-diligence-platform/blob/main/DATA_SOURCES.md"
-        target="_blank"
-        rel="noreferrer"
-        className="underline"
-      >
-        DATA_SOURCES.md
-      </a>{" "}
-      in the repository for the full construction notes.
-    </div>
+      </Link>
+      .
+    </p>
   );
 }
 

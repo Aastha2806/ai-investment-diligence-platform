@@ -51,15 +51,12 @@ export default function ForensicPage() {
     <div>
       <PageHeader
         eyebrow="Forensic"
-        title="Forensic & Accounting Analysis"
-        description="Cash-quality, working-capital, leverage, and academic screening-model analysis, computed transparently from the underlying financials."
+        title="Forensic Analysis"
+        description="Screen accounting and cash-flow patterns that may warrant further diligence."
       />
       <IllustrativeBanner />
 
-      <Section
-        title="Cash Conversion"
-        description="CFO / Net Income indicates whether reported earnings are backed by cash generation."
-      >
+      <Section title="Cash Conversion" description="CFO / Net Income — is reported profit backed by cash?">
         <Card>
           <TrendChart
             data={years.map((y) => ({ year: `FY${y.year}`, "CFO / Net Income": y.cfoToNetIncome !== null ? +y.cfoToNetIncome.toFixed(2) : 0 }))}
@@ -68,17 +65,13 @@ export default function ForensicPage() {
           />
         </Card>
         <p className="mt-3 text-sm text-foreground-muted">
-          A ratio consistently above 1.0x indicates operating cash flow has kept pace with or exceeded
-          reported net income. A declining ratio, as seen in the most recent year here, indicates cash
-          conversion has weakened and coincides with a working-capital build — see below.
+          The recent decline coincides with a working-capital build — see below.
         </p>
       </Section>
 
-      <Section
-        title="Working Capital"
-        description="Days Sales/Inventory/Payables Outstanding and the resulting Cash Conversion Cycle. Inventory is not a meaningful driver for this SaaS business model and is included at zero for completeness."
-      >
+      <Section title="Working Capital" description="DSO, DIO, DPO, and the resulting Cash Conversion Cycle.">
         <DataTable columns={wcColumns} rows={wcRows} />
+        <p className="mt-2 text-xs text-foreground-muted">DIO is 0 — inventory isn&apos;t a driver for this SaaS business.</p>
       </Section>
 
       <Section title="Capex vs. D&A" description="Whether capital spending is running ahead of or behind depreciation.">
@@ -111,22 +104,12 @@ export default function ForensicPage() {
         </Card>
       </Section>
 
-      <Section
-        title="Beneish M-Score"
-        description="An 8-variable screening indicator correlated with a higher likelihood of earnings manipulation in academic backtests. It is a screening indicator requiring further investigation, not proof of fraud."
-      >
+      <Section title="Beneish M-Score" description="8-variable earnings-quality screen — a prompt for further diligence, not proof.">
         <DataTable columns={beneishColumns} rows={beneishRows} />
-        <p className="mt-3 text-sm text-foreground-muted">
-          Reference threshold: scores above {BENEISH_THRESHOLD} are more commonly associated with
-          manipulator profiles in the original research. Treat this strictly as a prompt for further
-          diligence on the underlying driver, not a conclusion.
-        </p>
+        <p className="mt-3 text-xs text-foreground-muted">Reference threshold: {BENEISH_THRESHOLD}. See Methodology for the full formula.</p>
       </Section>
 
-      <Section
-        title="Altman Z'-Score"
-        description="Private-company variant (book value of equity, since this illustrative company has no market price). A bankruptcy-risk screening model, with limitations — see Methodology."
-      >
+      <Section title="Altman Z'-Score" description="Bankruptcy-risk screen (book-value variant — see Methodology).">
         <DataTable columns={altmanColumns} rows={altmanRows} />
         <div className="mt-3 flex flex-wrap gap-2">
           {altman.map((a) => (
@@ -137,10 +120,7 @@ export default function ForensicPage() {
         </div>
       </Section>
 
-      <Section
-        title="Management Commentary vs. Reported Metrics"
-        description="Sample management commentary compared against the metrics it describes, using neutral, non-accusatory language."
-      >
+      <Section title="Management Commentary vs. Reported Metrics" description="Commentary checked against the trend it describes.">
         <div className="space-y-4">
           {commentary.map((c, i) => (
             <Card key={i}>
