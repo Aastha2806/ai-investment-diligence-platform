@@ -48,15 +48,14 @@ Scroll the full memo top to bottom.
 
 Show that every formula is documented in plain language, and the explicit "what this tool does not do" section.
 
-## Suggested Screenshot List
+## Screenshots
 
-1. Dashboard (full page)
-2. Financials statement table
-3. Forensic — Beneish/Altman section
-4. DCF page mid-slider-drag, showing sensitivity table
-5. Diligence findings
-6. Memo executive summary
+Six screenshots (Dashboard, DCF, Forensic, Diligence, Memo, Methodology) are captured from the live deployed site and embedded directly in [README.md](README.md#screenshots) / stored under `public/screenshots/`. To refresh them after a UI change, re-run headless Chrome against the live URL for each route, e.g.:
 
-## Suggested GIF/Video Capture
+```bash
+chrome --headless=new --window-size=1440,1000 --screenshot=public/screenshots/dashboard.png https://aastha2806.github.io/ai-investment-diligence-platform/
+```
 
-Record only the DCF slider interaction (step 4 above) — it's the single most convincing 10 seconds of the whole demo for a finance audience, because it's visibly a real, live-recalculating model rather than a static mockup.
+## Video Recording
+
+Not included. This environment had no screen-recording or video-capture tooling available (no ffmpeg, no headless-browser video export) without adding a new dependency, so a recorded walkthrough was not produced. The static screenshots above and this script substitute for one.

@@ -117,7 +117,27 @@ src/
 
 ## Screenshots
 
-See [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for the suggested capture list (Dashboard, DCF, Forensic, Diligence, Memo) and a walkthrough script.
+Captured directly from the live deployed site.
+
+**Dashboard**
+![Dashboard](public/screenshots/dashboard.png)
+
+**Interactive FCFF DCF**
+![DCF](public/screenshots/dcf.png)
+
+**Forensic & Accounting Analysis**
+![Forensic Analysis](public/screenshots/forensic.png)
+
+**AI-Assisted Diligence Engine**
+![Diligence Engine](public/screenshots/diligence.png)
+
+**Investment Memo**
+![Investment Memo](public/screenshots/memo.png)
+
+**Methodology**
+![Methodology](public/screenshots/methodology.png)
+
+See [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for a full walkthrough script.
 
 ## Interview / Demo Walkthrough
 
