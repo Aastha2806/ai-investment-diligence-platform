@@ -29,4 +29,4 @@ Under static export with the App Router, Next.js's client-side link-prefetching 
 
 ## What Would Change With a Real Budget / Real Team
 
-See the "What would you add if given a budget?" and "What would you change for a real investment team?" questions in [INTERVIEW_PREP.md](INTERVIEW_PREP.md).
+Real filings (with citations) in place of illustrative data, a real market price to run the standard (market-value) Altman Z-Score and sanity-check the DCF output, multi-year-ramped forecast assumptions instead of flat ones, comparable-company multiples, and an audit trail for every input figure — all things a real diligence process requires and a portfolio demo can reasonably skip.

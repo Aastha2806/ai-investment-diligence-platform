@@ -48,14 +48,6 @@ Scroll the full memo top to bottom.
 
 Show that every formula is documented in plain language, and the explicit "what this tool does not do" section.
 
-## Screenshots
-
-Six screenshots (Dashboard, DCF, Forensic, Diligence, Memo, Methodology) are captured from the live deployed site and embedded directly in [README.md](README.md#screenshots) / stored under `public/screenshots/`. To refresh them after a UI change, re-run headless Chrome against the live URL for each route, e.g.:
-
-```bash
-chrome --headless=new --window-size=1440,1000 --screenshot=public/screenshots/dashboard.png https://aastha2806.github.io/ai-investment-diligence-platform/
-```
-
 ## Video Recording
 
-The repository includes a real browser-recorded walkthrough at `public/screenshots/demo.webm`. It was captured with Playwright against the deployed app and includes navigation through the workflow plus the interactive DCF WACC adjustment.
+The repository includes a real browser-recorded walkthrough at `public/screenshots/demo.webm`, embedded in [README.md](README.md#demo). It was captured with Playwright against the deployed app (`scripts/demo-video/record.mjs`) and includes navigation through the full workflow plus the interactive DCF WACC adjustment. See [scripts/demo-video/README.md](scripts/demo-video/README.md) to reproduce it.

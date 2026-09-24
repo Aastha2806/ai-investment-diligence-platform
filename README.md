@@ -13,10 +13,6 @@ A real screen recording of the live site — Dashboard → Financials → Analys
 Your viewer doesn't render inline video — download <a href="public/screenshots/demo.webm">demo.webm</a> directly, or see the GIF below.
 </video>
 
-If your viewer doesn't render the video above, here's the same walkthrough as a GIF:
-
-
-#
 ## What This Project Does
 
 It walks a single illustrative company through a full diligence-and-valuation workflow — **Company → Financials → Historical Analysis → Forensic Analysis → DCF Valuation → Scenario Analysis → Diligence → Investment Memo** — with every margin, ratio, CAGR, DCF output, and forensic score computed live from raw line items, not hard-coded. It produces valuation ranges, scenario outputs, and diligence questions — **never a buy, sell, hold, or price-target recommendation.**
@@ -125,9 +121,9 @@ src/
 .github/workflows/deploy.yml   CI: test → lint → build → deploy to GitHub Pages
 ```
 
-## Interview / Demo Walkthrough
+## Demo Walkthrough
 
-A ~5-minute guided walkthrough — what to click, what to say — is in [DEMO_SCRIPT.md](DEMO_SCRIPT.md). Common interview questions with full answers (FCFF, WACC, terminal value, Beneish, Altman, why static, why no LLM, limitations, what you'd add with a budget) are in [INTERVIEW_PREP.md](INTERVIEW_PREP.md).
+A ~5-minute guided walkthrough — what to click, what to say — is in [DEMO_SCRIPT.md](DEMO_SCRIPT.md).
 
 ## Disclaimer
 
